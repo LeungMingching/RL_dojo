@@ -1,4 +1,6 @@
 .DS_Store
+_static/
+.vscode
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
