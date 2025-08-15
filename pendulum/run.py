@@ -11,7 +11,7 @@ def main():
     print(f"Starting observation: {observation}")
 
     episode_over = False
-    total_reward = 0
+    total_reward = 0.0
 
     while not episode_over:
 
@@ -19,7 +19,7 @@ def main():
 
         observation, reward, terminated, truncated, info = env.step(action)
 
-        total_reward += reward
+        total_reward += float(reward)
         episode_over = terminated or truncated
 
     print(f"Episode finished! Total reward: {total_reward}")
