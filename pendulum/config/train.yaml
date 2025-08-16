@@ -1,0 +1,9 @@
+total_timesteps: 5
+log_interval: 4
+tensorboard_log: "saved/logs/"
+model_path: "saved/models/sac_pendulum"
+
+env:
+  name: "Pendulum-v1"
+  render_mode: None
+  gravity: 9.81

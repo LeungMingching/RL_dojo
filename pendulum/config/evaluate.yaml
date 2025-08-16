@@ -1,0 +1,6 @@
+model_path: "saved/models/sac_pendulum"
+
+env:
+  name: "Pendulum-v1"
+  render_mode: "human"
+  gravity: 9.81
