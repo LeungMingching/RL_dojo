@@ -1,7 +1,11 @@
-total_timesteps: 5
+total_timesteps: 10000
 log_interval: 4
 tensorboard_log: "saved/logs/"
-model_path: "saved/models/sac_pendulum"
+
+model:
+  preload_path: "saved/models/sac_pendulum"
+  save_path: "saved/models/sac_pendulum"
+  device: "mps"  # Use "cpu" or "cuda" if not using Apple Silicon
 
 env:
   name: "Pendulum-v1"
