@@ -1,11 +1,15 @@
+"""
+A simple implementation of Tabular Q-Learning algorithm.
+"""
+
 import yaml
 import gymnasium as gym
 from agent import Agent
+from trainer import Trainer
 
 
 def main(config: dict):
     env = gym.make(**config["env"])
-    observation, info = env.reset()
 
     ag = Agent(
         config=config["agent"],
@@ -13,18 +17,8 @@ def main(config: dict):
         action_space=env.action_space
     )
 
-    for _ in range(1000):
-        action = ag.predict(observation)
-        observation, reward, terminated, truncated, info = env.step(action)
-        print(observation, reward, terminated, truncated, info)
-        env.render()
-
-        done = terminated or truncated
-        ag.update(observation, reward, done)
-        if done:
-            observation, info = env.reset()
-
-    env.close()
+    trainer = Trainer(env=env, agent=ag, config=config["trainer"])
+    trainer.train()
 
 
 if __name__ == "__main__":

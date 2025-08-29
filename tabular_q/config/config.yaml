@@ -1,8 +1,12 @@
+trainer:
+  num_train_step: 10000
+
 env:
   id: 'FrozenLake-v1'
+  desc: null
   map_name: "4x4"
   is_slippery: False
-  render_mode: 'human'
+  render_mode: null
 
 agent:
   learning_rate: 0.1
