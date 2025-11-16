@@ -42,5 +42,6 @@ class Agent:
                 self.discount_factor * (0 if done else self.q_table[observation].max()) -
                 self.q_table[self.last_observation, self.last_action]
             )
-        
-        print(self.q_table)
+    
+    def save_policy(self, file_path):
+        np.save(file_path, self.q_table)
