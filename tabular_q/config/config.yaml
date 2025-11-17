@@ -3,7 +3,7 @@ trainer:
   max_steps_per_episode: 100
   save_policy_per_episodes: 10
   evaluate_per_episodes: 100
-  num_evaluate_step: 10
+  num_evaluate_episodes: 10
   save_path: "saved"
 
 env:
@@ -11,7 +11,7 @@ env:
   desc: null
   map_name: "4x4"
   is_slippery: False
-  render_mode: null
+  render_mode: "rgb_array"
 
 agent:
   learning_rate: 0.1
