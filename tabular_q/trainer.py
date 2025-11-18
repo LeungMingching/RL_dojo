@@ -21,8 +21,8 @@ class Trainer:
         self.record_env = RecordVideo(
             self.env,
             video_folder=os.path.join(self.save_path, "videos"),
-            name_prefix="evaluation",
-            episode_trigger=lambda x: True
+            name_prefix="eval",
+            episode_trigger=lambda x: x % self.num_evaluate_episodes == 0
         )
         self.record_env = RecordEpisodeStatistics(self.record_env)
 
@@ -64,12 +64,8 @@ class Trainer:
 
             done = terminated or truncated or self._is_reached_max_steps(step)
             self.agent.update(observation, reward, done)
-            if done:
-                observation, info = self.env.reset()
 
     def _evaluate_one_episode(self, episode):
-        print(f"Evaluation Episode {episode + 1}/{self.num_evaluate_episodes}")
-        print(type(self.record_env), getattr(self.record_env.env, "render_mode", None))
         
         # init
         observation, info = self.record_env.reset()
@@ -83,8 +79,6 @@ class Trainer:
             step += 1
 
             done = terminated or truncated or self._is_reached_max_steps(step)
-            if done:
-                observation, info = self.record_env.reset()
     
     def _is_reached_max_steps(self, step):
         return step >= self.max_steps_per_episode
